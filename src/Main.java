@@ -52,24 +52,24 @@ public class Main {
     }
 
     private static double[] zahleneingabe(){
-        System.out.println("Bitte geben Sie Ihre Zahlen ein.");
-        System.out.println("Mit Leerzeichen getrennt z.B 1 4 7");
-        System.out.println("Eingabe: ");
-        String zahleneingabe = eingabe.nextLine();
-        String[] zahlenString = zahleneingabe.split(" ");
-        return stringZuDoubleArray(zahlenString);
+        while (true) {
+            System.out.println("Bitte geben Sie Ihre Zahlen ein.");
+            System.out.println("Mit Leerzeichen getrennt z.B 1 4 7");
+            System.out.println("Eingabe: ");
+            String zahleneingabe = eingabe.nextLine();
+            String[] zahlenString = zahleneingabe.split(" ");
+            try {
+                return stringZuDoubleArray(zahlenString);
+            } catch (NumberFormatException ex) {
+                System.out.println("Nochmal");
+            }
+        }
     }
 
     private static double[] stringZuDoubleArray(String[] array){
         double[] neuesArray = new double[array.length];
         for (int i = 0; i < array.length; i++){
-            try {
-                neuesArray[i] = Double.parseDouble(array[i]);
-
-            } catch (NumberFormatException ex){
-                System.out.println("Fehlerhafte Eingabe!");
-                zahleneingabe();
-            }
+            neuesArray[i] = Double.parseDouble(array[i]);
         }
         return neuesArray;
     }
