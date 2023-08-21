@@ -32,7 +32,8 @@ public class Main {
                 }
                 case 3 -> { multiplication();
                 }
-                case 4 -> { dividieren();
+                case 4 -> {
+                    System.out.println(dividieren(zahleneingabe()));
                 }
                 case 5 -> {
                     return;
@@ -41,7 +42,29 @@ public class Main {
         }
     }
 
-    private static void dividieren() {
+    private static double[] zahleneingabe(){
+        System.out.println("Bitte geben Sie Ihre Zahlen ein.");
+        System.out.println("Mit Leerzeichen getrennt z.B 1 4 7");
+        System.out.println("Eingabe: ");
+        String zaleneingabe = eingabe.next();
+        String[] zahlenString = zaleneingabe.split(" ");
+        return strinZuIntArray(zahlenString);
+    }
+
+    private static double[] strinZuIntArray(String[] array){
+        double[] neuesArray = new double[array.length];
+        for (int i = 0; i < array.length; i++){
+            neuesArray[i] = Double.parseDouble(array[i]);
+        }
+        return neuesArray;
+    }
+
+    private static double dividieren(double[] array) {
+        double ergebnis = array[0];
+        for (int i = 1; i < array.length; i++){
+            ergebnis /= array[i];
+        }
+        return ergebnis;
     }
 
     private static void multiplication() {
