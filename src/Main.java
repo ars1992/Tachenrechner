@@ -26,11 +26,14 @@ public class Main {
             System.out.println("Bitte Menüpunkt auswählen: ");
             int operation = eingabe.nextInt();
             switch (operation) {
-                case 1 -> { addition();
+                case 1 -> {
+                    System.out.println(addition(zahleneingabe()));
                 }
-                case 2 -> { subtrahieren();
+                case 2 -> {
+                    System.out.println(subtrahieren(zahleneingabe()));
                 }
-                case 3 -> { multiplication();
+                case 3 -> {
+                    System.out.println(multiplication(zahleneingabe()));
                 }
                 case 4 -> {
                     System.out.println(dividieren(zahleneingabe()));
@@ -67,12 +70,27 @@ public class Main {
         return ergebnis;
     }
 
-    private static void multiplication() {
+    private static double multiplication(double[] array) {
+        double ergebnis = array[0];
+        for (int i = 1; i < array.length; i++){
+            ergebnis *= array[i];
+        }
+        return ergebnis;
     }
 
-    private static void subtrahieren() {
+    private static double subtrahieren(double[] array) {
+        double ergebnis = array[0];
+        for (int i = 1; i < array.length; i++){
+            ergebnis -= array[i];
+        }
+        return ergebnis;
     }
 
-    private static void addition() {
+    private static double addition(double[] array) {
+        double ergebnis = array[0];
+        for (int i = 1; i < array.length; i++){
+            ergebnis /= array[i];
+        }
+        return ergebnis;
     }
 }
