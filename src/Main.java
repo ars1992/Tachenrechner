@@ -1,10 +1,11 @@
-import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    static Scanner eingabe = new Scanner(System.in);
+    private static final Scanner eingabe = new Scanner(System.in);
 
     public static void main(String[] args) {
+        //System.out.println(Arrays.toString(zahleneingabe()));
         menueführung();
 
     }
@@ -21,25 +22,30 @@ public class Main {
     }
 
     private static void menueführung() {
+
         while (true) {
             menueanzeigen();
             System.out.println("Bitte Menüpunkt auswählen: ");
-            int operation = eingabe.nextInt();
+            String operation = eingabe.nextLine();
+
             switch (operation) {
-                case 1 -> {
+                case "1" -> {
                     System.out.println(addition(zahleneingabe()));
                 }
-                case 2 -> {
+                case "2" -> {
                     System.out.println(subtrahieren(zahleneingabe()));
                 }
-                case 3 -> {
+                case "3" -> {
                     System.out.println(multiplication(zahleneingabe()));
                 }
-                case 4 -> {
+                case "4" -> {
                     System.out.println(dividieren(zahleneingabe()));
                 }
-                case 5 -> {
+                case "5" -> {
                     return;
+                }
+                default -> {
+                    System.out.println("Menüpunkt nicht vorhanden!");
                 }
             }
         }
@@ -49,12 +55,12 @@ public class Main {
         System.out.println("Bitte geben Sie Ihre Zahlen ein.");
         System.out.println("Mit Leerzeichen getrennt z.B 1 4 7");
         System.out.println("Eingabe: ");
-        String zaleneingabe = eingabe.next();
+        String zaleneingabe = eingabe.nextLine();
         String[] zahlenString = zaleneingabe.split(" ");
-        return strinZuIntArray(zahlenString);
+        return stringZuDoubleArray(zahlenString);
     }
 
-    private static double[] strinZuIntArray(String[] array){
+    private static double[] stringZuDoubleArray(String[] array){
         double[] neuesArray = new double[array.length];
         for (int i = 0; i < array.length; i++){
             neuesArray[i] = Double.parseDouble(array[i]);
@@ -89,7 +95,7 @@ public class Main {
     private static double addition(double[] array) {
         double ergebnis = array[0];
         for (int i = 1; i < array.length; i++){
-            ergebnis /= array[i];
+            ergebnis += array[i];
         }
         return ergebnis;
     }
